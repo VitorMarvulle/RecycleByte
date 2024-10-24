@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 border border-warning rounded p-3" style="max-width: 500px;">
+      <h2>Cadastrar novo Usuário</h2>
+      <form method="POST">
+        {% csrf_token %}
+        <label class="form-label">Nome completo</label>
+        {{ form.nome }}
+        <label class="form-label">E-mail</label>
+        {{ form.email }}
+        <label class="form-label">Senha</label>
+        {{ form.senha }}
+        <div class="row p-3 mt-5">
+          <button type="submit" class="btn btn-lg btn-success">Cadastrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
