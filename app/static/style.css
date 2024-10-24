@@ -7,16 +7,46 @@
   box-sizing: border-box;
 }
 
+body {
+  background-image: url('assets/bg2.gif'); /* Substitua pelo caminho da sua imagem */
+  background-size: cover; /* Cobre toda a área */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Não repete a imagem */
+}
+
 .container-fluid {
   color: purple
 }
 
 .map-border {
-  border: 5px solid #4CAF50;
+  /*border: 5px solid #01C09A;*/
   /* Verde reciclável */
-  border-radius: 10px;
+  border-color: red; box-shadow: 0 5px 20px #01C09A;
+  border-radius: 25px; /* Valor que torna as bordas mais circulares */
+  overflow: hidden;
   /* Arredondar bordas, se desejado */
 }
+
+.map{
+  height: 100%;
+  width: 100%;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner {
+  padding: 20px;
+  background-color: lightcoral; /* Apenas para visualização */
+}
+.conteudo {
+  margin: 20px;
+  width: 55%;
+}
+
 
 .btn-sample {
   color: #ffffff;
@@ -30,12 +60,12 @@
 }
 
 .nav-item a {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
 }
 
-.nav-item a:hover {
+.nav-item a{
   transition: 0.3s;
-  color: white;
+  color: #01C09A;
 }
 
 .btn-sample:hover,

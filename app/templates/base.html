@@ -13,8 +13,9 @@
 </head>
 
 <body>
+  
   <header>
-    <nav class="navbar navbar-expand-lg bg-success">
+    <nav class="navbar navbar-expand-lg bg-white shadow p-3 mb-5 bg-body rounded">
       <div class="container-fluid">
         <!--Menu com LOGO-->
         <a class="navbar-brand" href="{% url 'home' %}">
@@ -27,7 +28,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Como Reciclar ♻️</a>
+              <a class="nav-link" aria-current="page" href="profile.html">Como Reciclar ♻️</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -50,11 +51,9 @@
               <a class="nav-link" href="#">Sobre</a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-
-            <a class="btn btn-warning me-1" href="{% url 'cadastro' %}">Cadastre-se</a>
-
-            <a class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          <form class="d-flex">
+            <a class="btn btn-warning me-3 btn-lg" href="{% url 'cadastro' %}">Cadastre-se</a>
+            <a class="btn btn-outline-warning me-5 btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"
               href="{% url 'profile' %}">Login</a>
           </form>
         </div>
@@ -120,81 +119,30 @@
     </div>
   </div>
 
-  <!-- MODAL CADASTRO -->
-  <div class="modal fade" id="ModalCadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Faça seu Cadastro</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-
-          <div class="container justify-content-center align-items-center">
-            <div class="content">
-              <div class="card mb-3" id="card"
-                style="max-width: 540px; border: 0.5px solid; border-radius: 10px;  border-color: #E54C3C;">
-                <div class="row g-0">
-                  <div class="col-md-4">
-
-                  </div>
-                  <div class="col-md-0">
-                    <form action="cadastro" method="post">
-                      <div class="card-body w-100">
-                        <div class="mb-3">
-                          <label for="exampleFormControlInput1" class="form-label">Nome Completo:</label>
-                          <input type="text" name="nome" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Digite seu nome" style="border-color: #E54C3C;">
-                        </div>
-                        <div class="mb-3">
-                          <label for="exampleFormControlTextarea1" class="form-label">CPF:</label>
-                          <input type="text" name="cpf" class="form-control" id="exampleFormControlTextarea1"
-                            placeholder="Digite seu CPF" style="border-color: #E54C3C;">
-                        </div>
-                        <div class="mb-3">
-                          <label for="exampleFormControlTextarea1" class="form-label">Telefone:</label>
-                          <input type="tel" name="telefone" class="form-control" id="exampleFormControlTextarea1"
-                            placeholder="Digite seu Telefone" style="border-color: #E54C3C;">
-                        </div>
-                        <div class="mb-3">
-                          <label for="exampleFormControlInput1" class="form-label">Email:</label>
-                          <input type="email" name="email" class="form-control" id="exampleFormControlInput1"
-                            placeholder="exemplo@email.com.br" style="border-color: #E54C3C;">
-                        </div>
-                        <div class="mb-3">
-                          <label for="exampleFormControlTextarea1" class="form-label">Senha:</label>
-                          <input type="password" name="senha" class="form-control" id="exampleFormControlTextarea1"
-                            placeholder="Digite sua senha" style="border-color: #E54C3C;">
-                        </div>
-
-
-                        <div class="d-grid gap-2">
-                          <button class="btn btn-sample" style="border-color: #E54C3C;" id="btEnviar" type="submit"
-                            name="submit">Enviar</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal"
-            data-bs-target="#exampleModal">Login</button>
-        </div>
-      </div>
+  <div class="main">
+    <div class="banner"> <!-- 25% da largura para a coluna esquerda -->
+        <h1>Coluna Esquerda</h1>
+        <p>Conteúdo da coluna esquerda.</p>
+        {% block banner %}
+        {% endblock %}
     </div>
-  </div>
-
-  {% block conteudo %}
-  {% endblock %}
+    <div class="conteudo">
+        {% block conteudo %}
+        <h2>Conteúdo Principal</h2>
+        <p>Aqui vai o conteúdo principal da página.</p>
+        {% endblock %}
+    </div>
+    <div class="banner"> <!-- 25% da largura para a coluna direita -->
+        <h1>Coluna Direita</h1>
+        <p>Conteúdo da coluna direita.</p>
+        {% block banner1 %}
+        {% endblock %}
+    </div>
+</div>
 
   <footer class="bg-body-tertiary text-center">
     <div class="container p-4"></div>
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+    <div class="text-center p-3" style="background-color: rgba(255, 255, 255);">
       © 2024 - RecycleByte - Todos os direitos reservados
       <a class="text-body" href="https://mdbootstrap.com/">DSM</a>
     </div>
