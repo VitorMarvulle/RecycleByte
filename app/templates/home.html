@@ -1,24 +1,90 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
+<!-- Função para pegar a localização do usuario -->
+<script>
+    // function getLocation() {
+    //     if (navigator.geolocation) {
+    //         navigator.geolocation.getCurrentPosition(showPosition, showError);
+    //     } else {
+    //         alert("Geolocation is not supported by this browser.");
+    //     }
+    // }
+
+    // function showPosition(position) {
+    //     var latitude = position.coords.latitude;
+    //     var longitude = position.coords.longitude;
+    //     // Redireciona ou atualiza o iframe com base nas coordenadas
+    //     document.getElementById('map_iframe').src = `/mapa/?lat=${latitude}&lng=${longitude}`;
+    // }
+
+    // function showError(error) {
+    //     switch (error.code) {
+    //         case error.PERMISSION_DENIED:
+    //             alert("User denied the request for Geolocation.");
+    //             break;
+    //         case error.POSITION_UNAVAILABLE:
+    //             alert("Location information is unavailable.");
+    //             break;
+    //         case error.TIMEOUT:
+    //             alert("The request to get user location timed out.");
+    //             break;
+    //         case error.UNKNOWN_ERROR:
+    //             alert("An unknown error occurred.");
+    //             break;
+    //     }
+    // }
+
+    // window.onload = getLocation;
+    function obterLocalizacao() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var lat = position.coords.latitude;
+                var lng = position.coords.longitude;
+
+                // Chama a função para obter o endereço
+                obterEndereco(lat, lng);
+            }, function () {
+                alert("Erro ao obter a localização.");
+            });
+        } else {
+            alert("Geolocalização não é suportada neste navegador.");
+        }
+    }
+
+    function obterEndereco(lat, lng) {
+        // Usando a API Nominatim para geocodificação reversa
+        var url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Exibir o endereço na interface ou enviar para o servidor
+                console.log(data.display_name); // Aqui você pode manipular o endereço como quiser
+
+                // Exemplo: Redirecionar para a URL do Django com os dados
+                window.location.href = `/mapa/?lat=${lat}&lng=${lng}&address=${encodeURIComponent(data.display_name)}`;
+            })
+            .catch(error => {
+                console.error("Erro ao obter o endereço:", error);
+            });
+    }
+
+    // Chama a função ao carregar a página
+    window.onload = obterLocalizacao;
+</script>
+
+
+
 <div class="container my-4">
     <div class="row">
-        <div class="col" style="background-color: bisque;">
-            <div class="column" style="height: 600px;">HOME
-                <iframe
-                width="100%"
-                height="100%"
-                style="border:0"
-                loading="lazy"
-                allowfullscreen
-                referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDRDGCqCW_3zurR2NP5-wkJEkhwTqJwlbY
-                    &q=Space+Needle,Seattle+WA">
+        <div class="col">
+            <div class="column" style="height: 60vh;">
+                <iframe id="map_iframe" width="100%" height="60%" loading="lazy" class="map-border" allowfullscreen
+                    referrerpolicy="no-referrer-when-downgrade" src="">
                 </iframe>
             </div>
-
         </div>
-
     </div>
 </div>
 

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<div class="container my-4">
+    <div class="row">
+        <div class="col">
+            <div class="column" style="height: 80%;">
+                {{ mapa|safe }} <!-- Exibe o mapa Folium -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,6 +1,10 @@
 .container-fluid {
     color: purple
 }
+.map-border {
+  border: 5px solid #4CAF50; /* Verde reciclável */
+  border-radius: 10px; /* Arredondar bordas, se desejado */
+}
 
 .btn-sample { 
     color: #ffffff; 
