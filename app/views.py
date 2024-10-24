@@ -1,6 +1,4 @@
-from django.template import loader
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from .forms import UsuarioForm
 from .mongo import mongoDB
 import folium
@@ -8,9 +6,7 @@ from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
 
 def app(request):
-    template = loader.get_template("home.html")
-
-    return HttpResponse(template.render())
+    return render(request, "home.html")
 
 def home_view(request):
     return render(request, 'home.html')
@@ -27,17 +23,14 @@ def cadastrar_usuario(request):
             email = form.cleaned_data['email']
             senha = form.cleaned_data['senha']
 
-
             db.usuarios.insert_one({
                 'nome':nome,
                 'email':email,
                 'senha':senha
             })
-
             return redirect('home')
     else:
         form = UsuarioForm()
-    
     return render(request,'cadastro.html',{'form':form})
 
 
@@ -71,9 +64,9 @@ def mapa_view(request):
     m = folium.Map(location=[lat, lng], zoom_start=16)
 
     folium.Marker(
-    location=[lat,lng],
-    popup='Você esta aqui',
-    icon=folium.Icon(color='red')
+        location=[lat,lng],
+        popup='Você esta aqui',
+        icon=folium.Icon(color='red')
     ).add_to(m)
 
     # Adiciona marcadores de locais de reciclagem próximos (você pode obter isso de um banco de dados, por exemplo)
@@ -108,5 +101,4 @@ def mapa_view(request):
 
     # Salva o mapa em HTML
     mapa_html = m._repr_html_()
-
     return render(request, 'mapa.html', {'mapa': mapa_html})
