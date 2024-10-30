@@ -52,9 +52,13 @@
             </li>
           </ul>
           <form class="d-flex">
-            <a class="btn btn-warning me-3 btn-lg" href="{% url 'cadastro' %}">Cadastre-se</a>
-            <a class="btn btn-outline-warning me-5 btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"
-              href="{% url 'profile' %}">Login</a>
+            
+                  
+              
+                  <a class="btn btn-warning me-3 btn-lg" href="{% url 'cadastro' %}">Cadastre-se</a>
+                  <a class="btn btn-outline-warning me-5 btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    href="{% url 'profile' %}">Login</a>
+            
           </form>
         </div>
       </div>
@@ -99,7 +103,7 @@
                           </a>
                         </div>
                         <div class="d-grid gap-2">
-                          <button class="btn btn-sample" id="btEnviar" type="submit" name="submit">Entrar</button>
+                          <a href="{% url 'profile' %}" class="btn btn-sample" id="btEnviar" type="submit" name="submit">Entrar</a>
                         </div>
                       </div>
                     </form>
@@ -112,18 +116,18 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalCadastro"
-            style="background-color: #E54C3C; border-color: white;">Criar Cadastro</button>
+          
         </div>
       </div>
     </div>
   </div>
 
   <div class="main">
-    <div class="banner"> <!-- 25% da largura para a coluna esquerda -->
+    <div class="banner">
+      {% block coluna_esquerda %} <!-- 25% da largura para a coluna esquerda -->
         <h1>Coluna Esquerda</h1>
         <p>Conteúdo da coluna esquerda.</p>
-        {% block banner %}
+        
         {% endblock %}
     </div>
     <div class="conteudo">
@@ -132,10 +136,11 @@
         <p>Aqui vai o conteúdo principal da página.</p>
         {% endblock %}
     </div>
-    <div class="banner"> <!-- 25% da largura para a coluna direita -->
+    <div class="banner">
+      {% block coluna_direita %} <!-- 25% da largura para a coluna direita -->
         <h1>Coluna Direita</h1>
         <p>Conteúdo da coluna direita.</p>
-        {% block banner1 %}
+        
         {% endblock %}
     </div>
 </div>

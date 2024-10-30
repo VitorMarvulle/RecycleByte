@@ -1,25 +1,22 @@
+
+
 {% extends 'base.html' %}
+{% load static %}
+
+{% block coluna_esquerda %}
+<h1>essa é a esquerda</h1>
+<img src="{% static 'assets/profile1.png' %}" alt="Foto do perfil" class="circular-img" width="150">
+<a class="btn btn-warning me-3 btn-lg" href="{% url 'home' %}">Sair</a>
+{% endblock %}
+
 
 {% block conteudo %}
-<div class="container my-4">
-    <div class="row">
-        <div class="col-md-4" style="background-color: bisque;">
-            <div class="column">
-                <!-- Conteúdo da coluna esquerda -->
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="column">
-                {% block conteudo %}
-                {% endblock %}
-            </div>
-        </div>
-        <div class="col-md-4" style="background-color: green;">
-            <div class="column">
-                <!-- Conteúdo da coluna direita -->
-            </div>
-        </div>
-    </div>
-</div>
 
+<h1>teste</h1>
+
+{% endblock %}
+
+{% block coluna_direita %}
+
+<h1>essa é a direita</h1>
 {% endblock %}
