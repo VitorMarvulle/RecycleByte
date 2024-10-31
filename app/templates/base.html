@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  
+
   <header>
     <nav class="navbar navbar-expand-lg bg-white shadow p-3 mb-5 bg-body rounded">
       <div class="container-fluid">
@@ -52,112 +52,99 @@
             </li>
           </ul>
           <form class="d-flex">
-            
-                  
-              
-                  <a class="btn btn-warning me-3 btn-lg" href="{% url 'cadastro' %}">Cadastre-se</a>
-                  <a class="btn btn-info me-3 btn-lg" href="{% url 'login' %}">Login</a>
-                  <a class="btn btn-outline-warning me-5 btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    href="{% url 'profile' %}">Login</a>
-            
+
+
+
+            <a class="btn btn-warning me-3 btn-lg" href="{% url 'cadastro' %}">Cadastre-se</a>
+            <a class="btn btn-info me-3 btn-lg" href="{% url 'fazerLogin' %}">Login</a>
+            <a class="btn btn-outline-warning me-5 btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"
+              href="{% url 'profile' %}">Login</a>
+
           </form>
         </div>
       </div>
     </nav>
   </header>
   <div>
-      {% if messages %}
-      {% for message in messages %}
-      <div class="alert alert-primary alert-dismissible fade show text-align-center" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close">
-        </button>
-      </div>
-      {% endfor %}
-      {% endif %}
-
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-primary alert-dismissible fade show text-align-center" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close">
+      </button>
     </div>
+    {% endfor %}
+    {% endif %}
 
-  <!--MODAL LOGIN-->
+  </div>
+
+  <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Faça seu Login</h1>
+          <h5 class="modal-title" id="exampleModalLabel">Faça seu Login</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-
-          <div class="container justify-content-center align-items-center">
-            <div class="content">
-              <div class="card mb-3" id="card"
-                style=" border: 0.5px solid; border-radius: 10px;  border-color: #E54C3C;">
-                <div class="row g-0">
-                  <div class="col-md-0">
-
-                  </div>
-                  <div class="col-md-0">
-                    <form action="login" method="post">
-                      <div class="card-body">
-                        <div class="mb-3">
-                          <label for="exampleFormControlInput1" class="form-label">Email:</label>
-                          <input type="email" name="email" class="form-control" id="exampleFormControlInput1"
-                            placeholder="exemplo@email.com.br" style="border-color: #E54C3C;">
-                        </div>
-                        <div class="mb-3">
-                          <label for="exampleFormControlTextarea1" class="form-label">Senha:</label>
-                          <input type="password" name="senha" class="form-control" id="exampleFormControlTextarea1"
-                            placeholder="digite sua senha" style="border-color: #E54C3C;">
-
-                        </div>
-                        <div style="text-align: end;">
-                          <a href="esquecisenha">
-                            <p>Esqueceu sua senha?</p>
-                          </a>
-                        </div>
-                        <div class="d-grid gap-2">
-                          <a href="{% url 'profile' %}" class="btn btn-sample" id="btEnviar" type="submit" name="submit">Entrar</a>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
+          <form method="post" action="{% url 'fazerLogin' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label class="form-label">E-mail</label>
+              <input type="email" name="email" class="form-control" placeholder="email@exemplo.com" required>
+              <div class="text-danger">{{ form.email.errors }}</div>
             </div>
-          </div>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-          
+            <div class="mb-3">
+              <label class="form-label">Senha</label>
+              <input type="password" name="senha" class="form-control" placeholder="digite sua senha" required>
+              <div class="text-danger">{{ form.senha.errors }}</div>
+            </div>
+            <div style="text-align: end;">
+              <a href="esquecisenha">
+                <p>Esqueceu sua senha?</p>
+              </a>
+            </div>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-sample" id="btEnviar">Entrar</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
 
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+
+  </div>
+  </div>
+  </div>
+  </div>
+
 
   <div class="main">
-    <div class="banner rounded-5"> 
+    <div class="banner rounded-5">
       {% block coluna_esquerda %} <!-- 25% da largura para a coluna esquerda -->
-        <h1>Coluna Esquerda</h1>
-        <p>Conteúdo da coluna esquerda.</p>
-        
-        {% endblock %}
+      <h1>Coluna Esquerda</h1>
+      <p>Conteúdo da coluna esquerda.</p>
+
+      {% endblock %}
     </div>
     <div class="conteudo">
-        {% block conteudo %}
-        <h2>Conteúdo Principal</h2>
-        <p>Aqui vai o conteúdo principal da página.</p>
-        {% endblock %}
+      {% block conteudo %}
+      <h2>Conteúdo Principal</h2>
+      <p>Aqui vai o conteúdo principal da página.</p>
+      {% endblock %}
     </div>
     <div class="banner rounded-5">
       {% block coluna_direita %} <!-- 25% da largura para a coluna direita -->
-        <h1>Coluna Direita</h1>
-        <p>Conteúdo da coluna direita.</p>
-        
-        {% endblock %}
+      <h1>Coluna Direita</h1>
+      <p>Conteúdo da coluna direita.</p>
+
+      {% endblock %}
     </div>
-</div>
+  </div>
 
 
   <footer class="bg-body-tertiary text-center">
@@ -172,4 +159,5 @@
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
 </body>
+
 </html>

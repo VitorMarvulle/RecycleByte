@@ -45,10 +45,17 @@
                 // Chama a função para obter o endereço
                 obterEndereco(lat, lng);
             }, function () {
-                alert("Erro ao obter a localização.");
+                alert("Erro ao obter a localização. Usando coordenadas padrão.");
+                var lat = -24.0084; // Latitude do centro de Praia Grande
+                var lng = -46.3961; // Longitude do centro de Praia Grande
+                window.location.href = `/mapa/?lat=${lat}&lng=${lng}&address=${encodeURIComponent("Praia Grande, SP")}`;
             });
         } else {
             alert("Geolocalização não é suportada neste navegador.");
+            // Usar coordenadas padrão se a geolocalização não for suportada
+            var lat = -24.0084; // Latitude do centro de Praia Grande
+            var lng = -46.3961; // Longitude do centro de Praia Grande
+            window.location.href = `/mapa/?lat=${lat}&lng=${lng}&address=${encodeURIComponent("Praia Grande, SP")}`;
         }
     }
 

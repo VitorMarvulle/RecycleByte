@@ -10,6 +10,7 @@ from datetime import timedelta
 import pymongo
 import pymongo.errors
 from django.contrib.auth import logout
+from django.http import JsonResponse
 
 def app(request):
     return render(request, "home.html",{'messages': messages.get_messages(request)})
@@ -134,29 +135,23 @@ def fazerLogin(request):
         if form.is_valid():
             email = form.cleaned_data['email']
             senha = form.cleaned_data['senha']
-
-
-        try:    
-            db= mongoDB()
-
-            usuario = db.usuarios.find_one({'email':email})
-
-            if usuario and check_password(senha, usuario['senha']):
-                request.session.set_expiry(timedelta(seconds=20))
-                request.session['email']=email
-                request.session['nome']=usuario['nome']
-                
-                return redirect('profile')
-            else:
-                messages.error(request,"Login ou senha invalidos, tente novamente")
-
-        except pymongo.errors.PyMongoError as e:
-              messages.error(request,f"Ocorreu um erro ao acessar o banco de dados: {e}")
-    
-    else:
-          form = UsuarioLoginForm()
-
-    return render(request,"login.html",{"form":form})
+ 
+            # Sua lógica de autenticação aqui...
+            try:
+                db = mongoDB()
+                usuario = db.usuarios.find_one({'email': email})
+ 
+                if usuario and check_password(senha, usuario['senha']):
+                    request.session['email'] = email
+                    request.session['nome'] = usuario['nome']
+                    return redirect('profile')  # Retorna sucesso
+                else:
+                    return redirect('home')
+ 
+            except pymongo.errors.PyMongoError as e:
+                return JsonResponse({'success': False, 'message': f'Ocorreu um erro ao acessar o banco de dados: {e}'})
+ 
+    return redirect('home')
 
 def userLogout(request):
 	logout(request)
