@@ -4,7 +4,8 @@
 
 {% block coluna_esquerda %}
 <div class="container bg-white text-center rounded-5 d-flex flex-column" style="height: 600px;">
-    <h1>Nome do Usuário</h1>
+    <h2>Bem vindo </h2>
+    <h1 style="color:blueviolet;">{{username}}</h1>
     <div class="text-center">
         <img src="{% static 'assets/profile1.png' %}" alt="Foto do perfil" class="bg-secondary" style="width: 150px; height: 150px; border-radius: 50%; border: 5px solid;">
     </div>
@@ -25,7 +26,7 @@
         
     </div>
     <button id="increase-btn" class="btn btn-success me-3 btn-lg mt-auto rounded-5">Adicionar Reciclagem</button>
-    <a class="btn btn-warning me-3 btn-lg mt-auto mb-2 rounded-5" href="{% url 'home' %}">Sair</a>
+    <a class="btn btn-warning me-3 btn-lg mt-auto mb-2 rounded-5" href="{% url 'logout' %}">Sair</a>
 
     <script>
         // JS para aumentar a barra de progresso e atualizar o contador

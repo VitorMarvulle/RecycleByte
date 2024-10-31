@@ -1,18 +1,37 @@
 from django.shortcuts import render, redirect
-from .forms import UsuarioForm
+from .forms import UsuarioForm,UsuarioLoginForm
 from .mongo import mongoDB
 import folium
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
+from django.contrib.auth.hashers import check_password,make_password
+from django.contrib import messages
+from datetime import timedelta
+import pymongo
+import pymongo.errors
+from django.contrib.auth import logout
 
 def app(request):
-    return render(request, "home.html")
+    return render(request, "home.html",{'messages': messages.get_messages(request)})
 
 def home_view(request):
     return render(request, 'home.html')
 
 def profile_view(request):
-    return render(request, 'profile.html')
+    if "email" not in request.session:
+        messages.error(request,"Sessao expirada, entre novamente")
+        return redirect("login")
+    
+    email = request.session.get('email')
+    nome = request.session.get('nome')
+
+    context={
+        'emailname':email,
+        'username':nome
+    }
+
+    return render(request, 'profile.html',context)
+        
 
 def reciclar_view(request):
     return render(request, 'reciclar.html')
@@ -26,11 +45,14 @@ def cadastrar_usuario(request):
             email = form.cleaned_data['email']
             senha = form.cleaned_data['senha']
 
+            senha_rash = make_password(senha)
+
             db.usuarios.insert_one({
                 'nome':nome,
                 'email':email,
-                'senha':senha
+                'senha':senha_rash
             })
+            messages.success(request,"Usuario cadastrado com sucesso!")
             return redirect('home')
     else:
         form = UsuarioForm()
@@ -105,3 +127,39 @@ def mapa_view(request):
     # Salva o mapa em HTML
     mapa_html = m._repr_html_()
     return render(request, 'mapa.html', {'mapa': mapa_html})
+
+def fazerLogin(request):
+    if request.method == "POST":
+        form = UsuarioLoginForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            senha = form.cleaned_data['senha']
+
+
+        try:    
+            db= mongoDB()
+
+            usuario = db.usuarios.find_one({'email':email})
+
+            if usuario and check_password(senha, usuario['senha']):
+                request.session.set_expiry(timedelta(seconds=20))
+                request.session['email']=email
+                request.session['nome']=usuario['nome']
+                
+                return redirect('profile')
+            else:
+                messages.error(request,"Login ou senha invalidos, tente novamente")
+
+        except pymongo.errors.PyMongoError as e:
+              messages.error(request,f"Ocorreu um erro ao acessar o banco de dados: {e}")
+    
+    else:
+          form = UsuarioLoginForm()
+
+    return render(request,"login.html",{"form":form})
+
+def userLogout(request):
+	logout(request)
+	messages.success(request, 'A sessao foi encerrada!')
+	return redirect('home')
+

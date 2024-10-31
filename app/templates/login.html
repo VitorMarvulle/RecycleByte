@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 border border-info rounded p-3 bg-white shadow p-3 mb-5 bg-body rounded" style="max-width: 350px;">
+      <h2>Faca seu login</h2>
+      <form method="POST">
+        {% csrf_token %}
+        <label class="form-label">E-mail</label>
+        {{ form.email }}
+        <label class="form-label">Senha</label>
+        {{ form.senha }}
+
+        <div class="container mt-4">
+          <a href="#">Esqueceu sua senha? Lamento.</a>
+        </div>
+        <div class="container mt-1">
+          <a href="{% url 'cadastro' %}">Cadastre-se</a>
+        </div>
+        <div class="row p-3 mt-3">
+          <button type="submit" class="btn btn-lg btn-success">Entrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

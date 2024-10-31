@@ -56,6 +56,7 @@
                   
               
                   <a class="btn btn-warning me-3 btn-lg" href="{% url 'cadastro' %}">Cadastre-se</a>
+                  <a class="btn btn-info me-3 btn-lg" href="{% url 'login' %}">Login</a>
                   <a class="btn btn-outline-warning me-5 btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"
                     href="{% url 'profile' %}">Login</a>
             
@@ -64,6 +65,18 @@
       </div>
     </nav>
   </header>
+  <div>
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-primary alert-dismissible fade show text-align-center" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close">
+        </button>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+    </div>
 
   <!--MODAL LOGIN-->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
