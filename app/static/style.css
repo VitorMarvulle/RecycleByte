@@ -41,18 +41,11 @@ body {
 .banner {
   padding: 20px;
   background-color: lightcoral; /* Apenas para visualização */
+
 }
 .conteudo {
   margin: 20px;
   width: 55%;
-}
-
-.circular-img {
-  width: 150px;  /* Ajuste o tamanho conforme desejado */
-  height: 150px;
-  object-fit: cover;  /* Mantém a proporção da imagem dentro do círculo */
-  border-radius: 50%;  /* Deixa a imagem circular */
-  border: 2px solid #E54C3C;  /* Opcional: adiciona uma borda */
 }
 
 

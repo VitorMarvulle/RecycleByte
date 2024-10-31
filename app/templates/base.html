@@ -28,7 +28,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="profile.html">Como Reciclar ♻️</a>
+              <a class="nav-link" aria-current="page" href="{% url 'reciclar' %}">Como Reciclar ♻️</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -122,8 +122,9 @@
     </div>
   </div>
 
+
   <div class="main">
-    <div class="banner">
+    <div class="banner rounded-5"> 
       {% block coluna_esquerda %} <!-- 25% da largura para a coluna esquerda -->
         <h1>Coluna Esquerda</h1>
         <p>Conteúdo da coluna esquerda.</p>
@@ -136,7 +137,7 @@
         <p>Aqui vai o conteúdo principal da página.</p>
         {% endblock %}
     </div>
-    <div class="banner">
+    <div class="banner rounded-5">
       {% block coluna_direita %} <!-- 25% da largura para a coluna direita -->
         <h1>Coluna Direita</h1>
         <p>Conteúdo da coluna direita.</p>
@@ -144,6 +145,7 @@
         {% endblock %}
     </div>
 </div>
+
 
   <footer class="bg-body-tertiary text-center">
     <div class="container p-4"></div>

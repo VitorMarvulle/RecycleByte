@@ -14,6 +14,9 @@ def home_view(request):
 def profile_view(request):
     return render(request, 'profile.html')
 
+def reciclar_view(request):
+    return render(request, 'reciclar.html')
+
 def cadastrar_usuario(request):
     db = mongoDB()
     if request.method == 'POST':
