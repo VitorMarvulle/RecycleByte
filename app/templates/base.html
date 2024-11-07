@@ -14,6 +14,7 @@
 
 <body>
 
+  <!-- NAVBAR -->
   <header>
     <nav class="navbar navbar-expand-lg bg-white shadow p-3 mb-5 bg-body rounded">
       <div class="container-fluid">
@@ -52,19 +53,17 @@
             </li>
           </ul>
           <form class="d-flex">
-
-
-
-            <a class="btn btn-warning me-3 btn-lg" href="{% url 'cadastro' %}">Cadastre-se</a>
-            <a class="btn btn-info me-3 btn-lg" href="{% url 'fazerLogin' %}">Login</a>
+            <a class="btn btn-warning me-3 btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCadastro" 
+            href="{% url 'home' %}">Cadastre-se</a>
             <a class="btn btn-outline-warning me-5 btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"
               href="{% url 'profile' %}">Login</a>
-
           </form>
         </div>
       </div>
     </nav>
   </header>
+
+  <!-- MENSAGEM ALERT LOGIN/CADASTRO -->
   <div>
     {% if messages %}
     {% for message in messages %}
@@ -78,7 +77,7 @@
 
   </div>
 
-  <!-- Modal -->
+  <!-- MODAL LOGIN -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -113,16 +112,58 @@
     </div>
   </div>
 
+  <!-- MODAL CADASTRO -->
+<div class="modal fade" id="ModalCadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Faça seu Cadastro</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container justify-content-center align-items-center">
+          <div class="content">
+            <div class="card mb-3" id="card"
+              style="max-width: 540px; border: 0.5px solid; border-radius: 10px;  border-color: #E54C3C;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-0">
+                  <form method="post" action="{% url 'cadastro'  %}">
+                      {% csrf_token %}
+                    <div class="card-body w-100">
+                      <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Nome Completo:</label>
+                        <input type="text" name="nome" class="form-control" id="exampleFormControlInput1"
+                          placeholder="Digite seu nome" style="border-color: #E54C3C;">
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">E-mail</label>
+                        <input type="email" name="email" class="form-control" placeholder="email@exemplo.com" required>
+                        <div class="text-danger">{{ form.email.errors }}</div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Senha</label>
+                        <input type="password" name="senha" class="form-control" placeholder="digite sua senha" required>
+                        <div class="text-danger">{{ form.senha.errors }}</div>
+                      </div>
+                      <div class="d-grid gap-2">
+                        <button class="btn btn-sample" style="border-color: #E54C3C;" id="btEnviar" type="submit"
+                          name="submit">Enviar</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+</div>
 
-  </div>
-  </div>
-  </div>
-  </div>
-
-
+<!-- CONTEUDO 3 COLUNAS CENTRAIS -->
   <div class="main">
     <div class="banner rounded-5">
       {% block coluna_esquerda %} <!-- 25% da largura para a coluna esquerda -->
@@ -145,7 +186,6 @@
       {% endblock %}
     </div>
   </div>
-
 
   <footer class="bg-body-tertiary text-center">
     <div class="container p-4"></div>
