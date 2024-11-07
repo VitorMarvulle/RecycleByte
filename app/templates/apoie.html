@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block coluna_esquerda %}{% endblock %} <!-- Coluna esquerda vazia -->
+{% block coluna_direita %}{% endblock %}  <!-- Coluna direita vazia -->
+
+{% block conteudo %}
+<style>
+    .card {
+        max-width: 400px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        text-align: center;
+    }
+    .card h2 {
+        color: #4CAF50;
+    }
+    .card p {
+        color: #333;
+        font-size: 1.1em;
+    }
+    .card .pix-key {
+        font-weight: bold;
+        color: #4CAF50;
+        font-size: 1.2em;
+        padding: 10px;
+        border: 1px solid #4CAF50;
+        border-radius: 5px;
+        background-color: #f0f9f0;
+ 
+    }
+    .card .cta-button {
+        margin-top: 15px;
+        text-decoration: none;
+        color: #fff;
+        background-color: #4CAF50;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1.1em;
+        transition: background-color 0.3s;
+    }
+    .card .cta-button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+    <div class="container d-flex justify-content-center align-items-center text-center rounded-5" style="height: 600px; width: 1000px; padding: 20px; ">
+        <div class="card p-4" style="max-width: 400px;">
+            <h2>Apoie Nosso Projeto</h2>
+            <p>Gostou do nosso projeto? Junte-se a nós e faça parte dessa mudança! Com sua parceria, podemos ampliar nosso impacto e promover um futuro mais sustentável.🌳</p>
+            <p id="pixKey" class="pix-key text-success fw-bold">Chave Pix: xxx.xxx.xxx.xx</p>
+            <button onclick="copiarPix()" class="btn btn-success">Contribua Agora</button>
+        </div>
+    </div>
+
+
+<script>
+    function copiarPix() {
+        // Seleciona o texto da chave Pix
+        const pixKey = document.getElementById("pixKey").innerText.replace("Chave Pix: ", "");
+        
+        // Copia o texto para o clipboard
+        navigator.clipboard.writeText(pixKey).then(() => {
+            alert("Chave Pix copiada para o clipboard!");
+        }).catch(err => {
+            console.error("Erro ao copiar chave Pix: ", err);
+        });
+    }
+</script>
+
+{% endblock %}

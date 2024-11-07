@@ -8,7 +8,7 @@
 }
 
 body {
-  background-image: url('assets/bg2.gif'); /* Substitua pelo caminho da sua imagem */
+  background-image: url('assets/bg2.gif');
   background-size: cover; /* Cobre toda a área */
   background-position: center; /* Centraliza a imagem */
   background-repeat: no-repeat; /* Não repete a imagem */
@@ -17,6 +17,7 @@ body {
 .container-fluid {
   color: purple
 }
+
 
 .map-border {
   /*border: 5px solid #01C09A;*/

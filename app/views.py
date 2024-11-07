@@ -33,6 +33,8 @@ def profile_view(request):
 
     return render(request, 'profile.html',context)
         
+def apoie_view(request):
+    return render(request, 'apoie.html')
 
 def reciclar_view(request):
     return render(request, 'reciclar.html')
