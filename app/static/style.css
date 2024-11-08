@@ -9,9 +9,12 @@
 
 body {
   background-image: url('assets/bg2.gif');
-  background-size: cover; /* Cobre toda a área */
-  background-position: center; /* Centraliza a imagem */
-  background-repeat: no-repeat; /* Não repete a imagem */
+  background-size: cover;
+  /* Cobre toda a área */
+  background-position: center;
+  /* Centraliza a imagem */
+  background-repeat: no-repeat;
+  /* Não repete a imagem */
 }
 
 .container-fluid {
@@ -22,13 +25,15 @@ body {
 .map-border {
   /*border: 5px solid #01C09A;*/
   /* Verde reciclável */
-  border-color: red; box-shadow: 0 5px 20px #01C09A;
-  border-radius: 25px; /* Valor que torna as bordas mais circulares */
+  border-color: red;
+  box-shadow: 0 5px 20px #01C09A;
+  border-radius: 25px;
+  /* Valor que torna as bordas mais circulares */
   overflow: hidden;
   /* Arredondar bordas, se desejado */
 }
 
-.map{
+.map {
   height: 100%;
   width: 100%;
 }
@@ -39,16 +44,10 @@ body {
   align-items: center;
 }
 
-.banner {
-  padding: 20px;
-  background-color: lightcoral; /* Apenas para visualização */
-
-}
 .conteudo {
   margin: 20px;
   width: 55%;
 }
-
 
 .btn-sample {
   color: #ffffff;
@@ -62,12 +61,65 @@ body {
 }
 
 .nav-item a {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 
-.nav-item a{
+.coluna {
+  background-color: #ffff;
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  max-width: 100%;
+}
+
+.coluna-central {
+  background-color: #ffff;
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 0px 10px 0px;
+  max-width: 100%;
+}
+
+.navbar-profile {
+  background-color: #E54C3C;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coluna-central .navbar-profile>a {
+  color: #ffff;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.1rem;
+  margin: 10px;
+  padding: 10px;
+}
+
+.coluna-central .navbar-profile>a:hover {
+  color: #77a54f;
+}
+
+.nav-item a {
   transition: 0.3s;
   color: #01C09A;
+}
+
+.div-points {
+  display: flex;
+  justify-content: left;
+  margin: 15px 15px 0px 15px
+}
+
+.div-points h5 {
+  position: relative;
+  top: 15px;
+  margin-left: 10px;
 }
 
 .btn-sample:hover,

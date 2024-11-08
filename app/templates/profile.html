@@ -1,33 +1,27 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block coluna_esquerda %}
-<div class="container bg-white text-center rounded-5 d-flex flex-column" style="height: 600px;">
-    <h2>Bem vindo </h2>
-    <h1 style="color:blueviolet;">{{username}}</h1>
+<div class="coluna">
+    <h3>Bem vindo </h3>
+    <h2 style="color:blueviolet;">{{username}}</h2>
     <div class="text-center">
         <img src="{% static 'assets/profile1.png' %}" alt="Foto do perfil" class="bg-secondary" style="width: 150px; height: 150px; border-radius: 50%; border: 5px solid;">
     </div>
 
-    <div class="container mt-4">
-        <p>Barra de Progressor</p>
+    <div class="container mt-3">
+        <p>Barra de Progresso</p>
         <div class="progress" style="height: 20px;">
             <div id="progress-bar" class="progress-bar" role="progressbar"></div>
         </div>
-
         <h2 id="level-counter" class="mt-3">Nível: 0</h2>
-
         <h2 id="badges" style="display: none;">
             <span id="badge1" style="display: none;">♻️</span>
             <span id="badge2" style="display: none;">🏆</span>
         </h2>
-
-        
     </div>
-    <button id="increase-btn" class="btn btn-success me-3 btn-lg mt-auto rounded-5">Adicionar Reciclagem</button>
-    <a class="btn btn-warning me-3 btn-lg mt-auto mb-2 rounded-5" href="{% url 'logout' %}">Sair</a>
-
+    <button id="increase-btn" class="btn btn-success m-4 btn-lg rounded-5">Adicionar Reciclagem</button>
+    <a class="btn btn-warning me-3 btn-lg mt-auto m-4 rounded-5" href="{% url 'logout' %}">Sair</a>
     <script>
         // JS para aumentar a barra de progresso e atualizar o contador
         document.addEventListener('DOMContentLoaded', function() {
@@ -71,17 +65,55 @@
 {% endblock %}
 
 {% block conteudo %}
-<div class="container bg-white text-center rounded-5 d-flex flex-column" style="height: 600px; width: 1000px;">
-    <h1>Central</h1>
-    <div class="text-center">
-    </div>
+<div class="coluna-central">
+    <nav class="navbar-profile">
+            <a>Ranking</a>
+            <a href="">Pontos</a>
+            <a href="">Conquista</a>
+            <a href="">Coisa</a>
+    </nav>
+    <section>
+        <div class="div-points">
+            <h1>5555</h1>
+            <h5>Pontos</h5>
+        </div>
+    </section>
+    <hr>
+   <div>
+    <p>alguma coisa</p>
+   </div>
 </div>
 {% endblock %}
 
 {% block coluna_direita %}
-<div class="container bg-white text-center rounded-5 d-flex flex-column" style="height: 600px;">
-    <h1>essa é a direita</h1>
-    <div class="text-center">
+<div class="coluna">
+    <h3>CONQUISTAS</h3>
+    <div>
+        <div class="d-flex justify-content-center">
+            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+        </div>
+        <div class="d-flex justify-content-center">
+            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+        </div>
+        <div class="d-flex justify-content-center">
+            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+        </div>
+        <div class="d-flex justify-content-center">
+            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+        </div>
+        <div class="d-flex justify-content-center">
+            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+        </div>
     </div>
 </div>
 {% endblock %}
