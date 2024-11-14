@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block bg %}
+    style="background-image: url('{% static 'assets/bg3.png' %}'); background-size: cover; background-position: center; background-repeat: no-repeat;"
+{% endblock %}
+
 {% block coluna_esquerda %}
 <div class="coluna">
     <h3>Bem vindo </h3>

@@ -9,15 +9,7 @@
   box-sizing: border-box;
 }
 
-body {
-  background-image: url('assets/bg.png');
-  background-size: cover;
-  /* Cobre toda a área */
-  background-position: center;
-  /* Centraliza a imagem */
-  background-repeat: no-repeat;
-  /* Não repete a imagem */
-}
+
 
 .container-fluid {
   color: purple

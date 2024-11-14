@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
+{% block bg %}
+    style="background-image: url('{% static 'assets/bg4.png' %}'); background-size: cover; background-position: center; background-repeat: no-repeat;"
+{% endblock %}
+
 {% block coluna_esquerda %}{% endblock %} <!-- Coluna esquerda vazia -->
 {% block coluna_direita %}{% endblock %}  <!-- Coluna direita vazia -->
 

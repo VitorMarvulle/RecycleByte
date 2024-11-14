@@ -12,7 +12,8 @@
   <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 
-<body>
+<body {% block bg %} style="background-image: url('{% static 'assets/bg1.png' %}'); background-size: cover; background-position: center; background-repeat: no-repeat;" {% endblock %}>
+
   <!-- NAVBAR -->
   <header>
     <nav class="navbar navbar-expand-lg bg-white shadow p-2 mb-3 bg-body rounded">

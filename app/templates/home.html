@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
+
+
+{% block bg %}
+    style="background-image: url('{% static 'assets/bg1.png' %}'); background-size: cover; background-position: center; background-repeat: no-repeat;"
+{% endblock %}
 
 {% block conteudo %}
 <!-- Função para pegar a localização do usuario -->
@@ -92,5 +98,6 @@
         </div>
     </div>
 </div>
+
 
 {% endblock %}
