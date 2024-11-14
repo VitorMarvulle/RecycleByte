@@ -160,3 +160,5 @@ def userLogout(request):
 	messages.success(request, 'A sessao foi encerrada!')
 	return redirect('home')
 
+def profile(request, conteudo='resumo'):
+    return render(request, 'profile.html', {'conteudo': conteudo})

@@ -10,12 +10,12 @@
     <h3>Bem vindo </h3>
     <h2 style="color:blueviolet;">{{username}}</h2>
     <div class="text-center">
-        <img src="{% static 'assets/profile1.png' %}" alt="Foto do perfil" class="bg-secondary" style="width: 150px; height: 150px; border-radius: 50%; border: 5px solid;">
+        <img src="{% static 'assets/profile1.png' %}" alt="Foto do perfil" class="bg-secondary" style="width: 100%; border-radius: 50%; border: 5px solid;">
     </div>
 
     <div class="container mt-3">
         <p>Barra de Progresso</p>
-        <div class="progress" style="height: 20px;">
+        <div class="progress" style="height: 2vh;">
             <div id="progress-bar" class="progress-bar" role="progressbar"></div>
         </div>
         <h2 id="level-counter" class="mt-3">Nível: 0</h2>
@@ -67,21 +67,21 @@
 {% block conteudo %}
 <div class="coluna-central">
     <nav class="navbar-profile">
-            <a href="">Resumo</a>
-            <a href="">Pontos</a>
-            <a href="">Ranking</a>
-            <a href="">Coisa</a>
+        <a href="{% url 'profile' conteudo='resumo' %}" class="nav-link">Resumo</a>
+        <a href="{% url 'profile' conteudo='pontos' %}" class="nav-link">Pontos</a>
+        <a href="{% url 'profile' conteudo='ranking' %}" class="nav-link">Ranking</a>
+        <a href="{% url 'profile' conteudo='coisa' %}" class="nav-link">Coisa</a>
     </nav>
-    <section>
-        <div class="div-points">
-            <h1>5555</h1>
-            <h5>RecyCoins</h5>
-        </div>
-    </section>
-    <hr>
-   <div>
-    <p>alguma coisa</p>
-   </div>
+
+    {% if conteudo == 'resumo' %}
+        {% include 'profile_tabs/resumo.html' %}
+    {% elif conteudo == 'pontos' %}
+        {% include 'profile_tabs/pontos.html' %}
+    {% elif conteudo == 'ranking' %}
+        {% include 'profile_tabs/ranking.html' %}
+    {% elif conteudo == 'coisa' %}
+        {% include 'profile_tabs/coisa.html' %}
+    {% endif %}
 </div>
 {% endblock %}
 

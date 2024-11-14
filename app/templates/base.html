@@ -78,82 +78,82 @@
   </div>
 
   <!-- MODAL LOGIN -->
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content border border-5 border-dark">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Faça seu Login</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form method="post" action="{% url 'fazerLogin' %}">
-              {% csrf_token %}
-              <div class="mb-3">
-                <label class="form-label">E-mail</label>
-                <input type="email" name="email" class="form-control" placeholder="email@exemplo.com" required>
-                <div class="text-danger">{{ form.email.errors }}</div>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Senha</label>
-                <input type="password" name="senha" class="form-control" placeholder="digite sua senha" required>
-                <div class="text-danger">{{ form.senha.errors }}</div>
-              </div>
-              <div style="text-align: end;">
-                <a href="esquecisenha">
-                  <p>Esqueceu sua senha?</p>
-                </a>
-              </div>
-              <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-sample" id="btEnviar">Entrar</button>
-              </div>
-            </form>
-          </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content border border-5 border-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Faça seu Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="{% url 'fazerLogin' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label class="form-label">E-mail</label>
+              <input type="email" name="email" class="form-control" placeholder="email@exemplo.com" required>
+              <div class="text-danger">{{ form.email.errors }}</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Senha</label>
+              <input type="password" name="senha" class="form-control" placeholder="digite sua senha" required>
+              <div class="text-danger">{{ form.senha.errors }}</div>
+            </div>
+            <div style="text-align: end;">
+              <a href="esquecisenha">
+                <p>Esqueceu sua senha?</p>
+              </a>
+            </div>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-sample" id="btEnviar">Entrar</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
+  </div>
 
   <!-- MODAL CADASTRO -->
-<div class="modal fade" id="ModalCadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content border border-5 border-dark">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Faça seu Cadastro</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="container justify-content-center align-items-center">
-          <div class="content">
-            <div class="card mb-3" id="card"
-              style="max-width: 540px; border: 0.5px solid; border-radius: 10px;  border-color: #E54C3C;">
-              <div class="row g-0">
-                <div class="col-md-4">
-                </div>
-                <div class="col-md-0">
-                  <form method="post" action="{% url 'cadastro'  %}">
-                      {% csrf_token %}
-                    <div class="card-body w-100">
-                      <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Nome Completo:</label>
-                        <input type="text" name="nome" class="form-control" id="exampleFormControlInput1"
-                          placeholder="Digite seu nome" style="border-color: #E54C3C;">
+  <div class="modal fade" id="ModalCadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border border-5 border-dark">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Faça seu Cadastro</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container justify-content-center align-items-center">
+            <div class="content">
+              <div class="card mb-3" id="card"
+                style="max-width: 540px; border: 0.5px solid; border-radius: 10px;  border-color: #E54C3C;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                  </div>
+                  <div class="col-md-0">
+                    <form method="post" action="{% url 'cadastro'  %}">
+                        {% csrf_token %}
+                      <div class="card-body w-100">
+                        <div class="mb-3">
+                          <label for="exampleFormControlInput1" class="form-label">Nome Completo:</label>
+                          <input type="text" name="nome" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Digite seu nome" style="border-color: #E54C3C;">
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label">E-mail</label>
+                          <input type="email" name="email" class="form-control" placeholder="email@exemplo.com" required>
+                          <div class="text-danger">{{ form.email.errors }}</div>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label">Senha</label>
+                          <input type="password" name="senha" class="form-control" placeholder="digite sua senha" required>
+                          <div class="text-danger">{{ form.senha.errors }}</div>
+                        </div>
+                        <div class="d-grid gap-2">
+                          <button class="btn btn-sample" style="border-color: #E54C3C;" id="btEnviar" type="submit"
+                            name="submit">Enviar</button>
+                        </div>
                       </div>
-                      <div class="mb-3">
-                        <label class="form-label">E-mail</label>
-                        <input type="email" name="email" class="form-control" placeholder="email@exemplo.com" required>
-                        <div class="text-danger">{{ form.email.errors }}</div>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label">Senha</label>
-                        <input type="password" name="senha" class="form-control" placeholder="digite sua senha" required>
-                        <div class="text-danger">{{ form.senha.errors }}</div>
-                      </div>
-                      <div class="d-grid gap-2">
-                        <button class="btn btn-sample" style="border-color: #E54C3C;" id="btEnviar" type="submit"
-                          name="submit">Enviar</button>
-                      </div>
-                    </div>
-                  </form>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -162,7 +162,6 @@
       </div>
     </div>
   </div>
-</div>
 
 <!-- CONTEUDO 3 COLUNAS CENTRAIS -->
   <div class="main">
@@ -197,6 +196,7 @@
 
     <div class="box">
         <div class="coluna">
+          {% block coluna_direita %}
           <h3>Conquistas</h3>
           <div>
               <div class="d-flex justify-content-center">
@@ -224,7 +224,8 @@
                   <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
                   <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
               </div>
-        </div>
+          </div>
+        {% endblock %}
       </div>
 
 

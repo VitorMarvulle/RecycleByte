@@ -10,4 +10,7 @@ urlpatterns = [
     path('login/', views.fazerLogin, name='fazerLogin'),
     path('logout/', views.userLogout, name='logout'),
     path('apoie/', views.apoie_view, name='apoie'),
+
+    path('profile/<str:conteudo>/', views.profile, name='profile'),
+    path('profile/resumo', views.profile, name='profile_default')
 ]
