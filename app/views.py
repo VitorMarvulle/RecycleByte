@@ -53,7 +53,18 @@ def cadastrar_usuario(request):
             db.usuarios.insert_one({
                 'nome':nome,
                 'email':email,
-                'senha':senha_rash
+                'senha':senha_rash,
+                'cpf':None,
+                'endereco':None,
+                'nivel':1,
+                'xp':0,
+                'recycoins':0,
+                'rc_papel':0,
+                'rc_plastico':0,
+                'rc_metal':0,
+                'rc_vidro':0,
+                'img_perfil':None
+
             })
             messages.success(request,"Usuario cadastrado com sucesso!")
             return redirect('home')
