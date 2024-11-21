@@ -157,7 +157,7 @@ def fazerLogin(request):
                 if usuario and check_password(senha, usuario['senha']):
                     request.session['email'] = email
                     request.session['nome'] = usuario['nome']
-                    return redirect('profile')  # Retorna sucesso
+                    return redirect('profile_default')
                 else:
                     return redirect('home')
  
