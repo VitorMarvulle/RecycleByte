@@ -34,15 +34,15 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                Notícias
+                Mais
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Eventos</a></li>
-                <li><a class="dropdown-item" href="#">Alguma coisa aqui</a></li>
+                <li><a class="dropdown-item" href="{% url 'noticias' %}">Notícias</a></li>
+                <li><a class="dropdown-item" href="{% url 'eventos' %}">Eventos</a></li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">Alguma outra coisa aqui</a></li>
+                <li><a class="dropdown-item" href="{% url 'campanhas' %}">Campanhas</a></li>
               </ul>
             </li>
             <li class="nav-item">
@@ -224,7 +224,7 @@
                   <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
               </div>
           </div>
-        {% endblock %}
+        
       </div>
 
 
@@ -235,6 +235,7 @@
       <a class="text-body" href="https://mdbootstrap.com/">DSM</a>
     </div>
   </footer>
+  {% endblock %}
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

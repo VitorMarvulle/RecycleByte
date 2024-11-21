@@ -39,6 +39,15 @@ def apoie_view(request):
 def reciclar_view(request):
     return render(request, 'reciclar.html')
 
+def noticias_view(request):
+    return render(request, 'noticias.html')
+
+def campanhas_view(request):
+    return render(request, 'campanhas.html')
+
+def eventos_view(request):
+    return render(request, 'eventos.html')
+
 def cadastrar_usuario(request):
     db = mongoDB()
     if request.method == 'POST':

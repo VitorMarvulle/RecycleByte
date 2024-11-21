@@ -7,6 +7,10 @@ urlpatterns = [
     path('cadastro/',views.cadastrar_usuario, name='cadastro'),
     path('mapa/', views.mapa_view, name='mapa'),
     path('reciclar/', views.reciclar_view, name='reciclar'),
+    path('noticias/', views.noticias_view, name='noticias'),
+    path('campanhas/', views.campanhas_view, name='campanhas'),
+    path('eventos/', views.eventos_view, name='eventos'),
+
     path('login/', views.fazerLogin, name='fazerLogin'),
     path('logout/', views.userLogout, name='logout'),
     path('apoie/', views.apoie_view, name='apoie'),
