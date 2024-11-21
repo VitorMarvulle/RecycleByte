@@ -16,48 +16,50 @@
     <div class="container mt-3">
         <p>Barra de Progresso</p>
         <div class="progress" style="height: 2vh;">
-            <div id="progress-bar" class="progress-bar" role="progressbar"></div>
+            <div
+                id="progress-bar"
+                class="progress-bar"
+                role="progressbar"
+                style="width: {{ xp }}%;"
+                aria-valuenow="{{ xp }}"
+                aria-valuemin="0"
+                aria-valuemax="100">
+            </div>
         </div>
-        <h2 id="level-counter" class="mt-3">Nível: 0</h2>
+        <h2 id="level-counter" class="mt-3">Nível: {{ nivel }}</h2>
     </div>
-    <button id="increase-btn" class="btn btn-success m-4 btn-lg rounded-5">Adicionar Reciclagem</button>
+    
+    <!-- Botão para adicionar reciclagem -->
+    <form action="{% url 'increase_xp' %}" method="post" id="xp-form">
+        {% csrf_token %}
+        <button type="submit" id="increase-btn" class="btn btn-success m-4 btn-lg rounded-5">
+            Adicionar Reciclagem
+        </button>
+    </form>
+    
+    <!-- Botão para sair -->
     <a class="btn btn-warning me-3 btn-lg mt-auto m-4 rounded-5" href="{% url 'logout' %}">Sair</a>
+    
+    <!-- Script -->
     <script>
-        // JS para aumentar a barra de progresso e atualizar o contador
         document.addEventListener('DOMContentLoaded', function() {
             const progressBar = document.getElementById('progress-bar');
             const increaseBtn = document.getElementById('increase-btn');
             const levelCounter = document.getElementById('level-counter');
-            const badges = document.getElementById('badges');
-            const badge1 = document.getElementById('badge1');
-            const badge2 = document.getElementById('badge2'); 
-
-            let currentLevel = 0;
-
-            increaseBtn.addEventListener('click', function() {
-                // Obter a largura atual da barra de progresso
-                let currentWidth = parseInt(progressBar.style.width) || 0;
-
-                // Aumentar a barra em 10%
-                if (currentWidth < 100) {
-                    currentWidth += 10;
-                    progressBar.style.width = currentWidth + '%';
-                }
-
-                if (currentWidth >= 100) {
-                    currentLevel++; 
-                    levelCounter.textContent = 'Nível: ' + currentLevel; 
-                    progressBar.style.width = '0'; // Reseta a barra de progresso
-
-                    if (currentLevel === 2) {
-                        badge1.style.display = 'inline'; // Exibe o emoji de reciclagem
-                        badges.style.display = 'block';
-                    }
-                    
-                    if (currentLevel === 3) {
-                        badge2.style.display = 'inline'; // Exibe o emoji de troféu
-                    }
-                }
+            const xpForm = document.getElementById('xp-form');
+    
+            let currentLevel = {{ nivel|default:0 }};
+            let currentXP = {{ xp|default:0 }};
+    
+            // Atualiza o contador de nível e a barra de progresso com base nos valores iniciais
+            levelCounter.textContent = 'Nível: ' + currentLevel;
+            progressBar.style.width = currentXP + '%';
+    
+            increaseBtn.addEventListener('click', function(event) {
+                event.preventDefault();  // Impede o comportamento padrão do botão (enviar formulário imediatamente)
+    
+                // Envia o formulário para a view que irá incrementar o XP
+                xpForm.submit();
             });
         });
     </script>

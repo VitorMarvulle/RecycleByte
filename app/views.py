@@ -56,7 +56,7 @@ def cadastrar_usuario(request):
                 'senha':senha_rash,
                 'cpf':None,
                 'endereco':None,
-                'nivel':1,
+                'nivel':0,
                 'xp':0,
                 'recycoins':0,
                 'rc_papel':0,
@@ -172,4 +172,54 @@ def userLogout(request):
 	return redirect('home')
 
 def profile(request, conteudo='resumo'):
-    return render(request, 'profile.html', {'conteudo': conteudo})
+    db = mongoDB() 
+    collection = db['usuarios']
+
+    email = request.session.get('email')
+
+    nome = None
+    nivel = None
+    xp = None
+
+    if email:
+        usuario = collection.find_one({'email': email})
+        if usuario:
+            nome = usuario.get('nome')
+            nivel = usuario.get('nivel', 1)
+            xp = usuario.get('xp', 0)
+
+    context = {
+        'conteudo': conteudo,
+        'username': nome,
+        'nivel': nivel,
+        'xp': xp,
+    }
+
+    return render(request, 'profile.html', context)
+    
+def increase_xp(request):
+    db = mongoDB() 
+    collection = db['usuarios']
+
+    email = request.session.get('email')
+    if not email:
+        return redirect('profile')
+
+    usuario = collection.find_one({'email': email})
+    if usuario:
+        xp_atual = usuario.get('xp', 0)
+        nivel_atual = usuario.get('nivel', 1)
+
+        novo_xp = xp_atual + 20
+
+        if novo_xp >= 100:
+            nivel_atual += novo_xp // 100
+            novo_xp = novo_xp % 100
+
+        # Atualiza o banco de dados
+        collection.update_one(
+            {'email': email},
+            {'$set': {'xp': novo_xp, 'nivel': nivel_atual}}
+        )
+
+    return redirect('profile_default')
