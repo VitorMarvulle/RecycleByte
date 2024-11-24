@@ -55,9 +55,9 @@
 }
 
 .coluna {
-  text-align: center;
-  border-radius: 10px;
   display: flex;
+  text-align: center;
+  justify-content: center;
   flex-direction: column;
   padding: 5px;
   height: 50%;
@@ -105,10 +105,37 @@
   margin: 15px 15px 0px 15px
 }
 
-.div-points h5 {
+.div-line-cards {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.div-points h4 {
   position: relative;
   top: 15px;
   margin-left: 10px;
+  color: rgb(227, 193, 0)
+}
+
+.div-cards {
+  background-color: #eff9ff;
+  border: blue solid 2px;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  width: 20%;
+}
+
+.div-cards img {
+  position: relative;
+  top: 10px;
+  width: 120px;
+}
+
+.div-cards h3 {
+  position: relative;
+  top: 25px;
 }
 
 .btn-sample:hover,

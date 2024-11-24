@@ -3,7 +3,6 @@ from . import views
 
 urlpatterns = [ 
     path('', views.app, name="home"),
-    path('profile/', views.profile_view, name='profile'),
     path('cadastro/',views.cadastrar_usuario, name='cadastro'),
     path('mapa/', views.mapa_view, name='mapa'),
     path('reciclar/', views.reciclar_view, name='reciclar'),
@@ -16,6 +15,7 @@ urlpatterns = [
     path('apoie/', views.apoie_view, name='apoie'),
     path('increase_xp/', views.increase_xp, name='increase_xp'),
 
+    path('profile/', views.profile_view, name='profile'),
     path('profile/<str:conteudo>/', views.profile, name='profile'),
     path('profile/resumo', views.profile, name='profile_default')
 ]

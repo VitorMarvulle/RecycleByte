@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block titulo %} Perfil | RecycleByte {% endblock %}
 {% block bg %}
     style="background-image: url('{% static 'assets/bg3.png' %}'); background-size: cover; background-position: center; background-repeat: no-repeat;"
 {% endblock %}
 
 {% block coluna_esquerda %}
-<div class="coluna">
     <h3>Bem vindo </h3>
     <h2 style="color:blueviolet;">{{username}}</h2>
     <div class="text-center">
@@ -63,59 +62,56 @@
             });
         });
     </script>
-</div>
 {% endblock %}
 
 {% block conteudo %}
 <div class="coluna-central">
     <nav class="navbar-profile">
         <a href="{% url 'profile' conteudo='resumo' %}" class="nav-link">Resumo</a>
-        <a href="{% url 'profile' conteudo='pontos' %}" class="nav-link">Pontos</a>
+        <a href="{% url 'profile' conteudo='loja' %}" class="nav-link">Loja</a>
         <a href="{% url 'profile' conteudo='ranking' %}" class="nav-link">Ranking</a>
-        <a href="{% url 'profile' conteudo='coisa' %}" class="nav-link">Coisa</a>
+        <a href="{% url 'profile' conteudo='mapa' %}" class="nav-link">Mapa</a>
     </nav>
 
     {% if conteudo == 'resumo' %}
         {% include 'profile_tabs/resumo.html' %}
-    {% elif conteudo == 'pontos' %}
-        {% include 'profile_tabs/pontos.html' %}
+    {% elif conteudo == 'loja' %}
+        {% include 'profile_tabs/loja.html' %}
     {% elif conteudo == 'ranking' %}
         {% include 'profile_tabs/ranking.html' %}
-    {% elif conteudo == 'coisa' %}
-        {% include 'profile_tabs/coisa.html' %}
+    {% elif conteudo == 'mapa' %}
+        {% include 'profile_tabs/mapa-profile.html' %}
     {% endif %}
 </div>
 {% endblock %}
 
 {% block coluna_direita %}
-<div class="coluna">
-    <h5>Conquistas</h5>
+    <h3>Conquistas</h3>
     <div>
         <div class="d-flex justify-content-center">
-            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
         </div>
         <div class="d-flex justify-content-center">
-            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
         </div>
         <div class="d-flex justify-content-center">
-            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
         </div>
         <div class="d-flex justify-content-center">
-            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
         </div>
         <div class="d-flex justify-content-center">
-            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/logo/LOGOMARCA.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
         </div>
     </div>
-</div>
 {% endblock %}

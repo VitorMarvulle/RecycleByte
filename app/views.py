@@ -19,12 +19,7 @@ def home_view(request):
     return render(request, 'home.html')
 
 def profile_view(request):
-    if "email" not in request.session:
-        messages.error(request,"Sessao expirada, entre novamente")
-        return redirect("login")
     
-    email = request.session.get('email')
-    nome = request.session.get('nome')
 
     context={
         'emailname':email,
@@ -158,7 +153,6 @@ def fazerLogin(request):
             email = form.cleaned_data['email']
             senha = form.cleaned_data['senha']
  
-            # Sua lógica de autenticação aqui...
             try:
                 db = mongoDB()
                 usuario = db.usuarios.find_one({'email': email})
@@ -181,8 +175,12 @@ def userLogout(request):
 	return redirect('home')
 
 def profile(request, conteudo='resumo'):
+    if "email" not in request.session:
+        messages.error(request,"Sessao expirada, entre novamente")
+        return redirect("login")
+    
     db = mongoDB() 
-    collection = db['usuarios']
+    collection = db['usuarios']  
 
     email = request.session.get('email')
 
@@ -203,9 +201,8 @@ def profile(request, conteudo='resumo'):
         'nivel': nivel,
         'xp': xp,
     }
-
     return render(request, 'profile.html', context)
-    
+
 def increase_xp(request):
     db = mongoDB() 
     collection = db['usuarios']
@@ -230,5 +227,4 @@ def increase_xp(request):
             {'email': email},
             {'$set': {'xp': novo_xp, 'nivel': nivel_atual}}
         )
-
     return redirect('profile_default')
