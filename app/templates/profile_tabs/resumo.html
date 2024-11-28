@@ -4,5 +4,28 @@
 <div>
     <h1>Resumo</h1>
     <p>Este é o conteúdo do resumo.</p>
-    <div>Informações detalhadas sobre o resumo...</div>
+    <div class="container-resumo">
+        <div class="flex">
+            <div class="large">Div 1</div>
+            <div class="boxes small">Div 2</div>
+        </div>
+        <div>
+            <div class="boxes medium">Div 3</div>
+            <div class="boxes medium">Div 4</div>
+        </div>
+    </div>
 </div>
+
+<style>
+   .container-resumo{
+        background-color: blue;
+        margin: 20px;
+   }
+   .flex{
+    display: flex;
+   }
+   .large{
+    width: 80%;
+   }
+    
+</style>
