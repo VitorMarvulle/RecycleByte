@@ -1,0 +1,50 @@
+{% load static %}
+<div>
+    <h1>Edite seu Perfil</h1>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 border border-warning rounded p-3 bg-white shadow p-3 mb-5 bg-body rounded" style="max-width: 500px;">
+                <h2>Olá {{ username }} </h2>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <!-- Nome completo -->
+                    <label class="form-label" for="nome">Nome completo</label>
+                    <input type="text" class="form-control" id="nome" name="nome" value="{{ form.nome.value }}" required>
+                    
+                    <!-- Endereço (CEP) -->
+                    <label class="form-label" for="endereco_cep">Endereço (CEP)</label>
+                    <input type="text" class="form-control" id="endereco_cep" name="endereco_cep" value="{{ form.endereco_cep.value }}" required>
+                    
+                    <!-- CPF -->
+                    <label class="form-label" for="cpf">CPF</label>
+                    <input type="text" class="form-control" id="cpf" name="cpf" value="{{ form.cpf.value }}" required>
+                    
+                    <!-- E-mail -->
+                    <label class="form-label" for="email">E-mail</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ form.email.value }}" required>
+                    
+                    <!-- Senha -->
+                    <label class="form-label" for="senha">Senha</label>
+                    <input type="password" class="form-control" id="senha" name="senha" value="{{ form.senha.value }}" required>
+                    
+                    <!-- Nível (não editável) -->
+                    <label class="form-label">Nível</label>
+                    <input type="text" class="form-control" value="{{ nivel }}" readonly>
+                    
+                    <!-- Experiência XP (não editável) -->
+                    <label class="form-label">Experiência XP</label>
+                    <input type="text" class="form-control" value="{{ xp }}" readonly>
+                    
+                    <!-- Alterar imagem -->
+                    <!-- <label class="form-label" for="imagem">Alterar Imagem</label>
+                    <input type="file" class="form-control" id="imagem" name="imagem"> -->
+
+                    <div class="row p-3 mt-5">
+                        <button type="submit" class="btn btn-lg btn-success">Salvar Alterações</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

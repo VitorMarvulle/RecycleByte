@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import UsuarioForm,UsuarioLoginForm
+from .forms import UsuarioForm,UsuarioLoginForm, UsuarioEditForm
 from .mongo import mongoDB
 import folium
 from geopy.geocoders import Nominatim
@@ -228,3 +228,60 @@ def increase_xp(request):
             {'$set': {'xp': novo_xp, 'nivel': nivel_atual}}
         )
     return redirect('profile_default')
+
+def profile_edit(request):
+    db = mongoDB()  # Supondo que você tenha uma conexão com MongoDB configurada.
+    
+    # Suponha que você queira carregar as informações do usuário logado
+    usuario = db.usuarios.find_one({"email": request.user.email})  # Ajuste conforme seu banco de dados
+
+    # Definir o nível e experiência para o template
+    nivel = usuario.get('nivel', 'Iniciante')  # Exemplo: Defina um valor padrão
+    experiencia_xp = usuario.get('experiencia_xp', 0)
+
+    if request.method == 'POST':
+        form = UsuarioEditForm(request.POST, request.FILES)
+        
+        if form.is_valid():
+            nome = form.cleaned_data['nome']
+            email = form.cleaned_data['email']
+            senha = form.cleaned_data['senha']
+            cpf = form.cleaned_data['cpf']
+            endereco = form.cleaned_data['endereco']
+
+            # Processamento de senha
+            if senha:  # Só criptografa a senha se o usuário forneceu uma nova senha
+                senha_rash = make_password(senha)
+            else:
+                senha_rash = usuario['senha']  # Mantém a senha atual, caso não tenha sido alterada
+
+            # Verifica se a imagem foi alterada
+            
+            # Atualiza os dados do usuário no MongoDB
+            db.usuarios.update_one(
+                {"email": email},  # Filtra pelo e-mail ou outro campo único
+                {"$set": {
+                    'nome': nome,
+                    'email': email,
+                    'senha': senha_rash,
+                    'cpf': cpf,
+                    'endereco': endereco,
+                }}
+            )
+
+            messages.success(request, "Perfil atualizado com sucesso!")
+            return redirect('profile')  # Ajuste a URL de redirecionamento
+
+    else:
+        form = UsuarioEditForm(initial={
+            'nome': usuario.get('nome', ''),
+            'email': usuario.get('email', ''),
+            'cpf': usuario.get('cpf', ''),
+            'endereco': usuario.get('endereco', ''),
+        })
+
+    return render(request, 'profile_edit.html', {
+        'form': form,
+        'nivel': nivel,
+        'experiencia_xp': experiencia_xp,
+    })

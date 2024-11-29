@@ -17,5 +17,7 @@ urlpatterns = [
 
     path('profile/', views.profile_view, name='profile'),
     path('profile/<str:conteudo>/', views.profile, name='profile'),
-    path('profile/resumo', views.profile, name='profile_default')
+    path('profile/resumo', views.profile, name='profile_default'),
+    path('profile/profile_edit', views.profile_edit, name='profile_edit')
+
 ]

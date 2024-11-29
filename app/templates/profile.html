@@ -10,6 +10,7 @@
     <h2 style="color:blueviolet;">{{username}}</h2>
     <div class="text-center">
         <img src="{% static 'assets/profile1.png' %}" alt="Foto do perfil" class="bg-secondary" style="width: 100%; border-radius: 50%; border: 5px solid;">
+        <a href="{% url 'profile' conteudo='profile_edit' %}" class="nav-link" style="background-color: rgb(255, 177, 60);">Editar Perfil</a>
     </div>
 
     <div class="container mt-3">
@@ -81,6 +82,8 @@
         {% include 'profile_tabs/ranking.html' %}
     {% elif conteudo == 'mapa' %}
         {% include 'profile_tabs/mapa-profile.html' %}
+    {% elif conteudo == 'profile_edit' %}
+        {% include 'profile_tabs/profile_edit.html' %}
     {% endif %}
 </div>
 {% endblock %}
