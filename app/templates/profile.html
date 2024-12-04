@@ -7,11 +7,19 @@
 
 {% block coluna_esquerda %}
     <h3>Bem vindo </h3>
-    <h2 style="color:blueviolet;">{{username}}</h2>
-    <div class="text-center">
-        <img src="{% static 'assets/profile1.png' %}" alt="Foto do perfil" class="bg-secondary" style="width: 100%; border-radius: 50%; border: 5px solid;">
-        <a href="{% url 'profile' conteudo='profile_edit' %}" class="nav-link" style="background-color: rgb(255, 177, 60);">Editar Perfil</a>
-    </div>
+    <h2 style="color:rgb(0, 0, 0);">{{username}}</h2>
+    <div class="profile-container text-center" style="position: relative; display: inline-block;">
+      <!-- Imagem de perfil -->
+      <img src="{% static 'assets/profile1.png' %}" alt="Foto do perfil" class="bg-secondary"
+           style="width: 100%; border-radius: 50%; border: 5px solid;">
+      
+      <!-- Ícone de editar -->
+      <a href="{% url 'profile' conteudo='profile_edit' %}" class="nav-link"
+         style="position: absolute; bottom: 5px; left: 5px; background-color: rgb(255, 212, 94); border-radius: 50%; padding: 5px;">
+          <img style="width: 30px; height: 30px;" src="{% static 'assets/edit_icon.png' %}" alt="Editar">
+      </a>
+  </div>
+  
 
     <div class="container mt-3">
         <p>Barra de Progresso</p>
@@ -30,13 +38,66 @@
     </div>
     
     <!-- Botão para adicionar reciclagem -->
-    <form action="{% url 'increase_xp' %}" method="post" id="xp-form">
-        {% csrf_token %}
-        <button type="submit" id="increase-btn" class="btn btn-success m-4 btn-lg rounded-5">
-            Adicionar Reciclagem
-        </button>
-    </form>
-    
+
+    <button class="btn btn-success m-4 btn-lg rounded-5" data-bs-toggle="modal" data-bs-target="#ModalReciclagem">
+        Adicionar Reciclagem
+    </button>
+
+
+    <!-- MODAL ADD RECICLAGEM -->
+  <div class="modal fade" id="ModalReciclagem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border border-5 border-dark">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Preencha os campos:</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container justify-content-center align-items-center">
+            <div class="content">
+              <div class="card mb-3" id="card"
+                style="max-width: 540px; border: 0.5px solid; border-radius: 10px;  border-color: #E54C3C;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                  </div>
+                  <div class="col-md-0">
+                    <form action="{% url 'increase_xp' %}" method="post" id="xp-form">
+                        {% csrf_token %}
+                      <div class="card-body w-100">
+                        <div class="mb-3">
+                          <label for="exampleFormControlInput1" class="form-label">Material:</label>
+                          <input type="text" name="nome" class="form-control" id="exampleFormControlInput1"
+                            placeholder="">
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label">Descriçao:</label>
+                          <input type="text" name="descricao" class="form-control" placeholder="" required>
+                          <div class="text-danger"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Quantidade:</label>
+                            <input type="text" name="quantidade" class="form-control" placeholder="" required>
+                            <div class="text-danger"></div>
+                        </div>
+        
+                        <div class="d-grid gap-2">
+                          <button class="btn btn-success" style="border-color: #019b1b;" id="btEnviar" type="submit" id="increase-btn"
+                            name="submit">Adicionar Reciclagem</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
     <!-- Botão para sair -->
     <a class="btn btn-warning me-3 btn-lg mt-auto m-4 rounded-5" href="{% url 'logout' %}">Sair</a>
     
@@ -118,3 +179,5 @@
         </div>
     </div>
 {% endblock %}
+
+
