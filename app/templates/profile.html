@@ -95,9 +95,6 @@
       </div>
     </div>
   </div>
-
-
-
     <!-- Botão para sair -->
     <a class="btn btn-warning me-3 btn-lg mt-auto m-4 rounded-5" href="{% url 'logout' %}">Sair</a>
     
@@ -132,7 +129,6 @@
         <a href="{% url 'profile' conteudo='resumo' %}" class="nav-link">Resumo</a>
         <a href="{% url 'profile' conteudo='loja' %}" class="nav-link">Loja</a>
         <a href="{% url 'profile' conteudo='ranking' %}" class="nav-link">Ranking</a>
-        <a href="{% url 'profile' conteudo='mapa' %}" class="nav-link">Mapa</a>
     </nav>
 
     {% if conteudo == 'resumo' %}
@@ -141,8 +137,6 @@
         {% include 'profile_tabs/loja.html' %}
     {% elif conteudo == 'ranking' %}
         {% include 'profile_tabs/ranking.html' %}
-    {% elif conteudo == 'mapa' %}
-        {% include 'profile_tabs/mapa-profile.html' %}
     {% elif conteudo == 'profile_edit' %}
         {% include 'profile_tabs/profile_edit.html' %}
     {% endif %}
@@ -153,29 +147,29 @@
     <h3>Conquistas</h3>
     <div>
         <div class="d-flex justify-content-center">
-            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-1.jpeg' %}" alt="" width="70px">
+            <img src="{% static 'assets/badges/badge-2.jpeg' %}" alt="" width="70px">
+            <img src="{% static 'assets/badges/badge-3.jpeg' %}" alt="" width="70px">
         </div>
         <div class="d-flex justify-content-center">
-            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-4.jpeg' %}" alt="" width="70px">
+            <img src="{% static 'assets/badges/badge-5.jpeg' %}" alt="" width="70px">
+            <img src="{% static 'assets/badges/badge-6.jpeg' %}" alt="" width="70px">
         </div>
         <div class="d-flex justify-content-center">
-            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
+          <img src="{% static 'assets/badges/badge-1.jpeg' %}" alt="" width="70px">
+          <img src="{% static 'assets/badges/badge-2.jpeg' %}" alt="" width="70px">
+          <img src="{% static 'assets/badges/badge-3.jpeg' %}" alt="" width="70px">
         </div>
         <div class="d-flex justify-content-center">
-            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
+          <img src="{% static 'assets/badges/badge-4.jpeg' %}" alt="" width="70px">
+          <img src="{% static 'assets/badges/badge-5.jpeg' %}" alt="" width="70px">
+          <img src="{% static 'assets/badges/badge-6.jpeg' %}" alt="" width="70px">
         </div>
         <div class="d-flex justify-content-center">
-            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
-            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="80px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="70px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="70px">
+            <img src="{% static 'assets/badges/badge-quest.png' %}" alt="" width="70px">
         </div>
     </div>
 {% endblock %}

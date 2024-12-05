@@ -68,7 +68,6 @@ def cadastrar_usuario(request):
                 'rc_metal':0,
                 'rc_vidro':0,
                 'img_perfil':None
-
             })
             messages.success(request,"Usuario cadastrado com sucesso!")
             return redirect('home')
@@ -285,3 +284,9 @@ def profile_edit(request):
         'nivel': nivel,
         'experiencia_xp': experiencia_xp,
     })
+
+def resumo_view(request):
+    db = mongoDB()
+    collection = db['feitos']
+    dados = list(collection.find())
+    return render(request, 'profile_default', {'dados': dados})
